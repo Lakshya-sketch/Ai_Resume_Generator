@@ -15,7 +15,7 @@ from .forms import ResumeForm
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 if not OPENAI_API_KEY or not OPENAI_API_KEY.strip():
-    raise ValueError("Error in Loading OPENAI_API_KEY.env file")
+    raise ValueError("Error in Loading OPENAI_API_KEY.env")
 
 OPENAI_API_URL = "https://api.openai.com/v1/chat/completions"
 
