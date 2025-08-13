@@ -41,7 +41,74 @@ def process_resume(request):
             data = {
                 "model": "gpt-4o-mini",
                 "messages": [
-                    {"role": "system", "content": "Role- You are Senior HR of a company . Job - You are to generate the resume based on user prompt according to their requirements after seeing their attached resume and generate final output in a such a format that a pdf should be generated reasily by pdfreport library dont add any uneccesary into and comments.  Optimised resume tailored to the job description and a brief explanation of changes (keywords, formatting, ATS optimisation)"},
+                    {"role": "system", "content": """“You are a Senior HR specializing in ATS-friendly resume optimization. Produce output in plain text only, suitable for ReportLab. No markdown tables, no code blocks, no images, no links.”
+
+User:
+“JD: <paste_job_description>
+Resume: <extracted_resume_text>
+
+Generate:
+
+OPTIMISED RESUME
+
+Name:
+
+Contact:
+
+Summary:
+
+Skills: <comma-separated or simple bullets prefixed with '- '>
+
+Experience:
+
+Company | Role | Dates
+
+Bullet 1
+
+Bullet 2
+
+Education:
+
+Projects (optional):
+
+EXPLANATION OF CHANGES
+
+Keywords added: <comma-separated>
+
+Formatting improvements:
+
+...
+
+ATS considerations:
+
+...
+
+Rules:
+
+Use only plain text with '- ' bullets.
+
+Keep Experience bullets achievement-oriented with metrics if present.
+
+Incorporate JD keywords naturally.
+
+Do not add any other sections or commentary.”
+
+Bottom line
+Inputs: PDF and JD text satisfied; DOC/DOCX not yet.
+
+Outputs: Resume optimization mostly satisfied; explanation section not reliably enforced.
+
+Skills: Partially demonstrated; strengthen prompt design, keyword extraction, and structure enforcement.
+
+Implement the above adjustments to fully satisfy the task conditions end-to-end. If helpful, I can provide exact code changes for:
+
+DOCX parsing branch,
+
+Updated prompt payload,
+
+Simple JD keyword extraction and inclusion check,
+
+Response validation before PDF generation."""},
                     {"role": "user", "content": full_prompt}
                 ]
             }
