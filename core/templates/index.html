@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Resume GPT Processor</title>
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+            font-size: 1.4rem;
+        }
+
+        /* Background Video */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Dark overlay for readability */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: -1;
+        }
+
+        /* Content Wrapper */
+        .container {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2em;
+        }
+
+        h1 {
+            margin-bottom: 0.8em;
+            font-size: 4.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Form Styling */
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2em;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            width: 100%;
+            max-width: 60vw;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        textarea {
+            background-color: black;
+            color: white;
+            border: 2px solid #ffb347;
+            resize: none;
+            height: 150px;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1.8rem;
+            width: 100%;
+        }
+
+        input[type="file"] {
+            background-color: black;
+            color: white;
+            border: 2px solid #ffb347;
+            padding: 10px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 14px;
+            background: linear-gradient(45deg, #ff7a18, #ffb347);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ffb347, #ff7a18);
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background video -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/Video_Generation_Based_on_User_Input.mp4' %}" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Resume GPT Processor</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <textarea name="prompt" placeholder="Your Resume Details"></textarea>
+            <input type="file" name="resume_pdf" accept="application/pdf">
+            <button type="submit">Generate PDF</button>
+        </form>
+    </div>
+
+</body>
+</html>
